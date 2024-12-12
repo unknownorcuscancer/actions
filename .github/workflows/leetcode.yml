@@ -1,0 +1,29 @@
+name: Get Daily LeetCode Problem
+
+on:
+  workflow_dispatch: # Manually trigger the workflow - 🔮 you can remove this line
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }} # If you are using a private repository
+
+    - name: Get Daily LeetCode Problem
+      uses: RndmCodeGuy20/Daily-LC-Problem-Action@v1.4.0 # Use the latest version - ✨ - if you are reading this care to checkout the marketplace for the latest version
+      with: 
+        lang_choice: 'Python3'
+        # Strictly use one of these options : ["C++", "C", "Python3", "JavaScript", "Java"] - 🚀 names are case sensitive
+            
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'author name' # Replace with your name
+        git config --global user.email 'author email' # Replace with your email
+        git status
+        git add .
+        git commit -m "chore(action) 🦈: today's daily leetcode question added"
+        git push
