@@ -1,0 +1,17 @@
+name: hello world
+
+on:
+  workflow_dispatch:
+
+jobs:
+  print-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: stay hello
+        run: echo "Hello World!"
+
+      - name: checkout repo content
+        uses: actions/checkout@v4
+         
+      - name: list files
+        run: ls
